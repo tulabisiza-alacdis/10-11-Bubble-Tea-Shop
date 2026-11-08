@@ -33,7 +33,7 @@ var PHOTOS = {
   'cheesecake/Classic': 'CC classic.png',
   'cheesecake/Strawberry': 'CC strawberry.png',
   'cheesecake/Blueberry': 'CC blueberry.png',
-  'cheesecake/Oreo': 'CC oreo.png',
+  'cheesecake/Oreo': 'CC Oreo.png',
   'cheesecake/Matcha': 'CC matcha.png',
 
   /* special */
