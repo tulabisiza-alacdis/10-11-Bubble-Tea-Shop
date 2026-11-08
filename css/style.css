@@ -1,29 +1,3 @@
-/* =====================================================================
-   10-11 BUBBLE TEASHOP: STYLE
-   Mga bahagi ng file na ito (hanapin gamit ang Ctrl+F):
-     1. Reset at kulay/font   (pinakataas: dito mo babaguhin ang mga kulay)
-     2. BUTTONS
-     3. HEADER
-     4. HERO 1  (litrato ng shop)
-     5. HERO 2  (What would you like today?)
-     6. CARDS   (mga item sa menu)
-     7. MENU TOOLBAR, ABOUT/VISIT, POP-UPS
-     8. MGA GALAW (animations)
-
-   MGA KULAY: nasa :root sa ibaba.
-     --brand = ang dilaw        --teal = ang berde-asul na accent
-     --ink   = kulay ng text    --bg   = kulay ng background
-   ===================================================================== */
-
-/* =====================================================================
-   MADALING EDIT (hanapin gamit ang Ctrl+F)
-     Kulay ng header ........ --hdr-bg
-     Dilaw na kulay ......... --brand
-     Dilim ng hero photo .... --hero-shade-1 / 2 / 3
-     Taas ng hero ........... --hero-height
-     Itsura ng menu card .... "CARDS"
-   ===================================================================== */
-
 /* ----- basic reset ----- */
 html{color-scheme:light}
 body{margin:0}
@@ -49,7 +23,7 @@ img{max-width:100%}
   --hero-height:600px;   /* pinakamataas na taas ng hero sa computer */
 }
 /* ----- dark mode (kapag dark ang setting ng device) ----- */
-@media (prefers-color-scheme: dark){
+@media (prefers-color-scheme: dark) and (max-width:0px){
   :root:not([data-theme="light"]){
     --bg:#14120A; --surface:#201D12; --ink:#F7F1D6; --muted:#B5AE92; --line:#3A3521; --soft:#2B2611;
     --edge:#8C8350; --shade:#000000;
