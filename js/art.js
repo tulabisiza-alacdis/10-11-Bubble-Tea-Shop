@@ -52,7 +52,7 @@ var PHOTOS = {
 
   /* sandwich */
   'sandwich/Chicken Sandwich': 'Food/Chicken Sandwich.png',
-  'sandwich/Chicken Sandwich Overload': 'Food/Chicken Sandwich Overload.png',
+  'sandwich/Chicken Sandwich Overload': 'Food/chicken sandwich overload.png',
 
   /* siomai */
   'siomai/Small Siomai': 'Food/Small Siomai.png',
