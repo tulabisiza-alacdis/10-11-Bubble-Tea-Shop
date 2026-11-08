@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>10-11 Bubble Teashop</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+
+  <!-- Mga font mula sa Google Fonts (kailangan ng internet) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Lilita+One&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="menu">
+<div id="top"></div>
+
+<header class="site" id="siteHeader">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="10-11 Bubble Teashop, back to top">
+      <img class="logo" src="images/logo.png" alt="" width="42" height="42">
+      <span class="name">10-11 Bubble Teashop</span>
+    </a>
+
+    <nav id="mainNav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#menu" class="on">Menu</a>
+      <a href="index.html#visit">Contact Us</a>
+    </nav>
+
+    <label class="hsearch" for="hq">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="hq" data-sq type="search" placeholder="Search drinks, food…" autocomplete="off">
+    </label>
+
+    <button class="cartbtn" id="cartBtn" type="button" data-act="opencart" aria-label="Open your cart">
+      <svg class="cartico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.5l2.2 10.2h9.6L19.5 7H6.4"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span class="count" id="cartCount">0</span>
+    </button>
+    <button class="checkoutbtn" id="checkoutBtn" type="button" data-act="checkout">Checkout</button>
+
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu"><span></span></button>
+  </div>
+</header>
+
+<main>
+<section id="menu" class="menupage beans">
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html#menu">← Back to menu</a></p>
+    <div class="sec-head" style="margin-bottom:0"><h1 id="pageTitle">Menu</h1><p>Prices in pesos, as posted in the shop.</p></div>
+  </div>
+  <div class="toolbar">
+    <div class="wrap">
+      <label class="search" for="q">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" data-sq type="search" placeholder="Search: oreo, wings, siomai…" autocomplete="off">
+      </label>
+      <div class="chips" id="chips" role="group" aria-label="Menu categories"></div>
+    </div>
+  </div>
+  <div class="wrap" id="menuList"></div>
+</section>
+</main>
+
+<footer class="sf">
+  <a class="scrollnext up" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+  <div class="sf-pearls" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sf-brand"><img src="images/logo.png" alt=""><b>10-11 Bubble Teashop</b></div>
+    <div class="sf-grid">
+      <div class="sf-col">
+        <h4>Explore</h4>
+        <nav class="sf-links" aria-label="Footer">
+          <a href="index.html#top">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="menu.html">Menu</a>
+          <a href="index.html#visit">Contact Us</a>
+        </nav>
+      </div>
+      <div class="sf-col">
+        <h4>Visit us</h4>
+        <p data-shop="address">Day-Ag Street, Heroes Boulevard, Purok 3 Buag, Bambang</p>
+        <p>Open Mon&ndash;Sat, <span data-shop="hours">8:00 AM to 8:00 PM</span></p>
+        <p data-shop="phoneDisplay">0917 152 3392</p>
+      </div>
+      <div class="sf-col">
+        <h4>Follow us on social media</h4>
+        <div class="sf-social">
+          <a data-fb href="#" target="_blank" rel="noopener" aria-label="Facebook page"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.5-3.1h-3.1V8.4c0-.9.4-1.6 1.7-1.6h1.5V4.1c-.3 0-1.2-.1-2.2-.1-2.3 0-3.8 1.4-3.8 3.9v2.5H8v3.1h2.7V21z"/></svg></a>
+          <a data-shop-tel href="tel:09171523392" aria-label="Call us"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a>
+          <a data-shop-maps href="https://www.google.com/maps" target="_blank" rel="noopener" aria-label="Open in Maps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <p class="sf-copy">&copy; 10-11 Bubble Teashop. Prices and availability may change.</p>
+  </div>
+</footer>
+
+<div class="cartbar" id="cartBar"><button type="button" class="btn" data-act="opencart"><span id="barText">View order</span><span id="barTotal"></span></button></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="overlay" id="itemOv" data-act="closeitem"><div class="sheet modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" id="itemSheet"></div></div>
+<div class="overlay" id="dlgOv" data-act="dlgclose"><div class="sheet modal dlg" role="dialog" aria-modal="true" aria-labelledby="dTitle" id="dlgSheet"></div></div>
+<div class="overlay" id="cartOv" data-act="closecart"><div class="sheet drawer" role="dialog" aria-modal="true" aria-labelledby="cTitle" id="cartSheet"></div></div>
+
+
+<!-- Mga script. Huwag baguhin ang pagkakasunod-sunod. -->
+<script src="js/settings.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/drawings.js"></script>
+<script src="js/art.js"></script>
+<script src="js/app.js"></script>
+<script src="js/guide.js"></script>
+</body>
+</html>
