@@ -426,7 +426,7 @@ try{
   if(!GUIDE_ON)return;
 
   var PAGE=document.body.getAttribute('data-page');
-  var skipped=loadSkip(),curN=0,off=get()==='off',key='',target=null,delayUntil=Date.now()+2200;
+  var noteSeen=false,skipped=loadSkip(),curN=0,off=get()==='off',key='',target=null,delayUntil=Date.now()+2200;
   var el=document.createElement('div');
   el.id='guide';el.setAttribute('role','status');el.setAttribute('aria-live','polite');el.hidden=true;
   el.innerHTML='<span class="gh" aria-hidden="true">👆</span><div class="gb"><small class="gs"></small><span class="gt"></span><div class="gr"><button type="button" class="gx gskip">Skip this step</button><button type="button" class="gx gx2">Turn off tips</button></div></div>';
@@ -434,7 +434,7 @@ try{
   var hand=el.querySelector('.gh'),gs=el.querySelector('.gs'),gt=el.querySelector('.gt');
   el.querySelector('.gskip').addEventListener('click',function(){if(curN&&skipped.indexOf(curN)<0){skipped.push(curN);saveSkip(skipped)}hide()});
   el.querySelector('.gx2').addEventListener('click',function(){finish()});
-
+  document.addEventListener('focusin',function(e){if(e.target&&e.target.id==='m-note')noteSeen=true});
   function $(s){return document.querySelector(s)}
   function on(sel){var n=$(sel);return !!(n&&n.classList.contains('on'))}
   function vis(n){return !!(n&&n.offsetParent!==null&&n.getBoundingClientRect().width>0)}
@@ -445,6 +445,7 @@ try{
   /* alin ang susunod na step? */
   function pick(){
     var count=parseInt(($('#cartCount')||{}).textContent,10)||0;
+    if(!on('#itemOv'))noteSeen=false;
     if(on('#dlgOv')){
       var yes=$('#dlgSheet [data-act="confirmyes"]');
       if(yes)return{k:'yes',n:5,t:yes,txt:'Tap <b>Yes</b> to place your order.'};
@@ -456,6 +457,8 @@ try{
       return null;
     }
     if(on('#itemOv')){
+      var note=$('#m-note');
+      if(note&&!note.value&&!noteSeen&&vis(note))return{k:'note',n:3.5,t:note,txt:'Optional: type a note here, like <b>less sweet</b>.'};
       var add=$('#m-add');
       if(add)return{k:'add',n:3,t:add,txt:'Choose your options, then tap <b>Add to cart</b>.'};
       return null;
@@ -502,7 +505,7 @@ try{
     if(key!==s.k){
       if(target)target.classList.remove('guide-target');
       key=s.k;curN=s.n;target=s.t;if(target)target.classList.add('guide-target');
-      gs.textContent='Step '+s.n+' of 5';gt.innerHTML=s.txt;
+      gs.textContent='Step '+Math.floor(s.n)+' of 5';gt.innerHTML=s.txt;
     }
     el.hidden=false;place(s);
   }
