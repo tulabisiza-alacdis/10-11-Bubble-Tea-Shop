@@ -4,14 +4,18 @@ body{margin:0}
 img{max-width:100%}
 [hidden]{display:none!important}
 
+/* Peso sign (₱): system font ang gagamit para sa ₱ lang */
+@font-face{font-family:'PesoFix';
+           unicode-range:U+20B1;
+           src:local('Roboto'),local('Noto Sans'),local('Arial'),local('Helvetica Neue'),local('Helvetica'),local('Segoe UI'),local('DejaVu Sans'),local('Liberation Sans')}
 :root{
   --bg:#FFFDF2; --surface:#FFFFFF; --ink:#17140A; --muted:#6A644C; --line:#EBE3BF; --soft:#FFF4C2;
   --edge:#17140A; --shade:#17140A;
   --brand:#F6CC1C; --brand-ink:#17140A;
   --teal:#0B8C86; --on-teal:#FFFFFF; --caramel:#B5681A; --chili:#CF3B2B;
   --band:#17140A; --band-ink:#F6CC1C;
-  --f-display:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;
-  --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-display:'PesoFix','Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;
+--f-body:'PesoFix','Figtree',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --hdr:66px;            /* taas ng header */
 
   /* HERO (ang malaking litrato sa taas)
