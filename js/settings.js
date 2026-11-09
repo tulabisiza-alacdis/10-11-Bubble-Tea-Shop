@@ -18,7 +18,7 @@ var SHOP = {
   openDays: [1, 2, 3, 4, 5, 6],
   openHour: 8,
   closeHour: 20,
-  mapsQuery: '10-11 Bubble Teashop Bambang',
+  mapsQuery: '16.3867451,121.1020445',
 
   /* FACEBOOK
      Ilagay dito ang username ng Facebook page, yung nasa dulo ng link.
