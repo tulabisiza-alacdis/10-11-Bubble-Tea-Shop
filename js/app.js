@@ -1,15 +1,10 @@
-/* =====================================================================
-   APP: ang gumagana ng website (menu, cart, checkout).
-   Karaniwang hindi mo na kailangang galawin ang file na ito.
-   Para sa presyo at menu, buksan ang js/menu.js.
-   Para sa number, address at Facebook, buksan ang js/settings.js.
-   ===================================================================== */
+
 (function(){
 'use strict';
 var $=function(s,r){return (r||document).querySelector(s)};
 var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
-var peso=function(n){return '₱'+Number(n).toLocaleString('en-PH')};
+var peso=function(n){return '\u20B1'+Number(n).toLocaleString('en-PH')};
 var slug=function(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')};
 /* Facebook links (galing sa js/settings.js) */
 /* Tinatanggap ang username, ang numero (ID), o ang buong link ng page */
