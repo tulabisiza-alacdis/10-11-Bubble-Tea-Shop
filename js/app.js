@@ -217,8 +217,12 @@ function summaryHTML(lines){
 function renderDialog(){
   var h='';
   if(D.step==='confirm'){
-    h='<div class="dlg-body"><h2 id="dTitle">Place your order?</h2><p class="dlg-q">Is this your final order?</p>'+summaryHTML(CART)+'<div class="sum"><span>Total</span><span>'+peso(subtotal())+'</span></div></div>'
-     +'<div class="dlg-foot"><button class="btn wide" type="button" data-act="confirmno">No, go back</button><button class="btn primary wide" type="button" data-act="confirmyes">Yes, place order</button></div>';
+    h='<div class="dlg-body"><h2 id="dTitle">Is this your fianl order</h2>'+summaryHTML(CART)+'<div class="sum"><span>Total</span><span>'+peso(subtotal())+'</span></div></div>'
+     +'<div class="dlg-foot"><button class="btn wide" type="button" data-act="confirmno">No</button><button class="btn primary wide" type="button" data-act="confirmyes">Yes</button></div>';
+      }else if(D.step==='remove'){
+    var rl=CART[D.idx]||{};
+    h='<div class="dlg-body"><h2 id="dTitle">Are you sure you want to remove your order?</h2><p class="dlg-q">'+(rl.qty||1)+'x '+esc(rl.name||'this item')+'</p></div>'
+     +'<div class="dlg-foot"><button class="btn wide" type="button" data-act="rmno">No</button><button class="btn primary wide" type="button" data-act="rmyes">Yes</button></div>';
   }else if(D.step==='done'){
     h='<div class="dlg-body center"><div class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>'
      +'<h2 id="dTitle">Congratulations!</h2><p class="dlg-q">Your order has been received. Thank you for choosing 10-11 Bubble Tea Shop!</p><p class="ref">Order no. <b>'+esc(D.ref)+'</b></p>'+summaryHTML(D.items)+'<div class="sum"><span>Total</span><span>'+peso(D.total)+'</span></div></div>'
@@ -268,15 +272,16 @@ document.addEventListener('click',function(e){
   if(el.dataset.copy){copyText(el.dataset.copy,null);return}
   var a=el.dataset.act;
   if((a==='closeitem'||a==='closecart'||a==='dlgclose')&&el.classList.contains('overlay')&&e.target!==el)return;
-  if(a==='dlgclose'){closeDialog();return}
+  if(a==='dlgclose'){var wasRemove=D.step==='remove';closeDialog();if(wasRemove)openCart();return}
   if(a==='opencart')openCart();
   else if(a==='closecart'){closeCart();if(el.dataset.go){var t=$(el.dataset.go);if(t)t.scrollIntoView({behavior:'smooth'})}}
   else if(a==='closeitem')closeItem();
   else if(a==='mq'){M.qty=Math.max(1,Math.min(50,M.qty+(+el.dataset.d)));$('#m-qty').textContent=M.qty;$('#m-add').textContent='Add to cart · '+peso(unitPrice()*M.qty)}
   else if(a==='addline')addLine();
   else if(a==='lq'){var l=CART[+el.dataset.i];l.qty=Math.max(1,Math.min(50,l.qty+(+el.dataset.d)));persist();renderCart();updateBadges()}
-  else if(a==='rm'){CART.splice(+el.dataset.i,1);persist();renderCart();updateBadges()}
-  else if(a==='checkout')startCheckout();
+   else if(a==='rm'){D.idx=+el.dataset.i;closeCart();openDialog('remove')}
+  else if(a==='rmno'){closeDialog();openCart()}
+  else if(a==='rmyes'){CART.splice(D.idx,1);persist();updateBadges();closeDialog();if(CART.length)openCart();else toast('Your cart is empty')}
   else if(a==='confirmno'){closeDialog();openCart()}
   else if(a==='confirmyes')placeOrder();
   else if(a==='donedone')closeDialog();
@@ -449,6 +454,7 @@ try{
     if(on('#dlgOv')){
       var yes=$('#dlgSheet [data-act="confirmyes"]');
       if(yes)return{k:'yes',n:5,t:yes,txt:'Tap <b>Yes</b> to place your order.'};
+      if($('#dlgSheet [data-act="rmyes"]'))return null;
       return{done:true};   /* "Your order has been received" */
     }
     if(on('#cartOv')){
