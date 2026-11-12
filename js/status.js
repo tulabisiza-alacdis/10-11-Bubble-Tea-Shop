@@ -31,22 +31,23 @@ function draw(){
   el.className='openbadge'+(s.open?'':' closed');
   el.innerHTML='<i aria-hidden="true"></i><span>'+s.text+'</span>';
 }
-/* Open/closed text kahit saan may [data-status] (hal. sa About) */
-function drawStatus(){
-  var s=shopStatus();
-  Array.prototype.forEach.call(document.querySelectorAll('[data-status]'),function(n){
-    n.className='status '+(s.open?'is-open':'is-closed');
-    n.innerHTML='<i aria-hidden="true"></i><span>'+s.text+'</span>';
-  });
 }
 /* Lingguhang oras (galing sa openDays, openHour, closeHour sa js/settings.js) */
 function drawWeek(){
   var ul=document.getElementById('weekList');if(!ul)return;
   var openDays=SHOP.openDays||[1,2,3,4,5,6],o=SHOP.openHour==null?8:SHOP.openHour,c=SHOP.closeHour==null?20:SHOP.closeHour;
   var order=[1,2,3,4,5,6,0],today=SHORT[new Intl.DateTimeFormat('en-US',{timeZone:SHOP.timezone||'Asia/Manila',weekday:'short'}).format(new Date())];
-  ul.innerHTML=order.map(function(d){
-    var on=openDays.indexOf(d)>-1;
-    return '<li class="'+(d===today?'today':'')+'"><span>'+DAYS[d]+'</span><b>'+(on?t12(o)+' – '+t12(c):'Closed')+'</b></li>';
+   
+   /* pagsamahin ang magkakasunod na araw na pareho ang oras */
+  var groups=[];
+  order.forEach(function(d){
+    var on=openDays.indexOf(d)>-1,g=groups[groups.length-1];
+    if(g&&g.on===on){g.days.push(d)}else{groups.push({on:on,days:[d]})}
+  });
+  ul.innerHTML=groups.map(function(g){
+    var first=DAYS[g.days[0]],last=DAYS[g.days[g.days.length-1]];
+    var label=g.days.length>1?first+' – '+last:first;
+    return '<li class="'+(g.days.indexOf(today)>-1?'today':'')+'"><span>'+label+'</span><b>'+(g.on?t12(o)+' – '+t12(c):'Closed')+'</b></li>';
   }).join('');
 }
 draw();drawStatus();drawWeek();setInterval(function(){draw();drawStatus()},60000);
